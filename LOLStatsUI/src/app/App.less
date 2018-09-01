@@ -3,9 +3,9 @@
     grid-template-columns: 100px 1fr 1fr 100px;
     grid-template-rows: 50px 25px 25px 1fr 25px 25px;
     grid-template-areas: 
-        "header header header header"
-        "subheader subheader subheader subheader"
-        "subheader subheader subheader subheader"
+        "title title title title"
+        "subtitle subtitle subtitle subtitle"
+        "subtitle subtitle subtitle subtitle"
         "main main main main"
         "main main main main"
         "footer footer footer footer";
@@ -14,7 +14,7 @@
 
     @media only screen and (min-width: 601px) {
         grid-template-areas:
-            "header header subheader subheader"
+            "title title subtitle subtitle"
             "main main main main"
             "main main main main"
             "main main main main"
@@ -24,31 +24,31 @@
 
     @media only screen and (min-width: 1008px) {
         grid-template-areas:
-            "header header subheader subheader"
-            "header header subheader subheader"
+            "title title subtitle subtitle"
+            "title title subtitle subtitle"
             "main main main main"
             "main main main main"
             "footer footer footer footer"
             "footer footer footer footer";
         }
 
-    .header {
-        border: 1px solid #333;
-        grid-area: header;
+    .titleWrap {
+        // border: 1px solid #333;
+        grid-area: title;
     }
 
-    .body {
-        border: 1px solid #333;
+    .bodyWrap {
+        // border: 1px solid #333;
         grid-area: main;
     }
 
-    .search {
-        border: 1px solid #333;
-        grid-area: subheader;
+    .searchWrap {
+        // border: 1px solid #333;
+        grid-area: subtitle;
     }
 
-    .footer {
-        border: 1px solid #333;
+    .footerWrap {
+        // border: 1px solid #333;
         grid-area: footer;
     }
 }

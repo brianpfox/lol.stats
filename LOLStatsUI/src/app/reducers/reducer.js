@@ -1,24 +1,27 @@
 import { combineReducers} from "redux-immutable";
 import Immutable from "immutable";
-import { INITIALIZE_REQUEST, INITIALIZE_RECEIVED} from "../actions/actions";
+import { actions } from "../actions/actions";
 
 const initialState = Immutable.Map({
     isFetching: false,
-    username: "",
-    csrf: "",
+    searchText: "BFY%20Meowington",
+    summoner: "",
+    matches: Immutable.Map(),
 });
 
 function mainState(state = initialState, action) {
     switch (action.type) {
-        case INITIALIZE_REQUEST:
+        case actions.SEARCH_TEXT_CHANGE:
+            return state.set("searchText", action.searchText)
+
+        case actions.SEARCH_REQUEST:
             state = state.set("isFetching", true);
             return state;
 
-        case INITIALIZE_RECEIVED:
+        case actions.SEARCH_RECEIVED:
             state = state.set("isFetching", false);
-            state = state.set("username", action.username);
-            state = state.set("csrf", action.csrf);
-            return state.set("version", action.version);
+            state = state.set("summoner", state.get("searchText"))
+            return state.set("matches", action.matches);
 
         default:
             return state;

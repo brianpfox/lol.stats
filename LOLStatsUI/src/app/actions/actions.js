@@ -1,42 +1,55 @@
-import fetch from 'isomorphic-fetch';
-// TODO: Try axios
+import fetch from "isomorphic-fetch";
+import Immutable from 'immutable';
 
-export const INITIALIZE_REQUEST = 'INITIALIZE_REQUEST';
-export const INITIALIZE_RECEIVED = 'INITIALIZE_RECEIVED';
+export const actions = {
+    SEARCH_TEXT_CHANGE: "SEARCH_TEXT_CHANGE",
+    SEARCH_REQUEST: "SEARCH_REQUEST",
+    SEARCH_RECEIVED: "SEARCH_RECEIVED"
+};
 
-export function initialize() {
-    return (dispatch) => {
-        return dispatch(_initialize());
-    };
-}
+export class Actions {
+    searchTextChange(value) {
+        return (dispatch) => {
+            return dispatch(this._searchTextChange(value));
+        };
+    }
 
-function _initializeReceived(username, csrf, version) {
-   return {
-      type: INITIALIZE_RECEIVED,
-      username: username,
-      csrf: csrf,
-      version: version
-   };
-}
+    search() {
+        return (dispatch, getState) => {
+            return dispatch(this._search(getState().get("searchText")));
+        };
+    }
 
-function _initializeRequest() {
-   return {
-      type: INITIALIZE_REQUEST,
-   };
-}
+    _searchTextChange(value) {
+        return {
+            type: actions.SEARCH_TEXT_CHANGE,
+            searchText: value
+         };
+    }
 
-function _initialize() {
-    return (dispatch) => {
-        dispatch(_initializeRequest());
-        let p1 = fetch('/id', {
-            credentials: 'same-origin'
-        });
-        p1.then(response => response.json())
-        .then(json => {
-            let csrf = json._csrf;
-            let username = json.username;
-            let version = json.version;
-            return dispatch(_initializeReceived(username, csrf, version));
-        });
-    };
+    _searchRequest(searchText) {
+        return {
+           type: actions.SEARCH_REQUEST,
+           searchText: searchText
+        };
+     }
+     
+     _searchReceived(matches) {
+        return {
+           type: actions.SEARCH_RECEIVED,
+           matches: matches
+        };
+     }
+
+    _search(searchText) {
+        return (dispatch) => {
+            dispatch(this._searchRequest());
+            
+            fetch(`/api/matches?summonerName=${searchText}`)
+            .then(response => response.json())
+            .then(json => {
+                return dispatch(this._searchReceived(Immutable.fromJS(json)));
+            });
+        };
+    }
 }
