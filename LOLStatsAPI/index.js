@@ -3,9 +3,13 @@
 const express = require("express");
 const router = express.Router();
 const http = require("http");
+const helmet = require("helmet");
+const logger = require("morgan");
 const { createLogger, format, transports } = require('winston');
 
 const config = require("./config");
+const { Routes } = require("./routes");
+const matchesController = require("./controllers/matchesController");
 
 class Application {
     constructor() {
@@ -14,11 +18,12 @@ class Application {
 
         this._app = express();
         this._registerMiddlewares(this._app);
-        this._registerRoutes(this._app, router);
+        this._registerRoutes(this._app, router, matchesController);
         this._server = http.createServer(this._app);
     }
 
     _configureLogging() {
+        // TODO:  Abstract this to another class
         const logger = createLogger({
             level: this._config.logLevel,
             format: format.combine(
@@ -33,17 +38,16 @@ class Application {
 
         return logger;
     }
-
     
     _registerMiddlewares(app) {
+        app.use(helmet());
+        app.use(logger("dev"));
         app.use(express.json());
         app.use(express.urlencoded({ extended: false }));
     }
 
-    _registerRoutes(app, router) {
-        app.use("/", (req, res) => {
-            res.send("Hello World");
-        });
+    _registerRoutes(app, router, controller) {
+        app.use("/api", (new Routes(router, controller)).configureRoutes());
     }
 
     start() {
