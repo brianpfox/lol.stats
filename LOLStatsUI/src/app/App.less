@@ -1,0 +1,54 @@
+.appWrap {
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr 100px;
+    grid-template-rows: 50px 25px 25px 1fr 25px 25px;
+    grid-template-areas: 
+        "header header header header"
+        "subheader subheader subheader subheader"
+        "subheader subheader subheader subheader"
+        "main main main main"
+        "main main main main"
+        "footer footer footer footer";
+    border: 1px solid #333;
+    height: 100%;
+
+    @media only screen and (min-width: 601px) {
+        grid-template-areas:
+            "header header subheader subheader"
+            "main main main main"
+            "main main main main"
+            "main main main main"
+            "main main main main"
+            "footer footer footer footer";
+        }
+
+    @media only screen and (min-width: 1008px) {
+        grid-template-areas:
+            "header header subheader subheader"
+            "header header subheader subheader"
+            "main main main main"
+            "main main main main"
+            "footer footer footer footer"
+            "footer footer footer footer";
+        }
+
+    .header {
+        border: 1px solid #333;
+        grid-area: header;
+    }
+
+    .body {
+        border: 1px solid #333;
+        grid-area: main;
+    }
+
+    .search {
+        border: 1px solid #333;
+        grid-area: subheader;
+    }
+
+    .footer {
+        border: 1px solid #333;
+        grid-area: footer;
+    }
+}

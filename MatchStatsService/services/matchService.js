@@ -16,7 +16,8 @@ class MatchService {
 
     getMatchesForSummoner(call, cb)
     {
-        if (!call || !call.request.summonerName || call.request.summonerName === "") throw new TypeError("gRPC Request :: Summoner name is required");
+        if (!call || !call.request.summonerName || call.request.summonerName === "") 
+            return cb("gRPC Request :: Summoner name is required");
         this.getMatchesForSummoner_async(call.request.summonerName)
         .then(matches => {
             cb(null, {matches: JSON.stringify(matches)});
