@@ -10,6 +10,7 @@ export default class Match extends Component {
             <div>
                 <div>Timestamp: {match.get("timestamp")}</div>
                 <div>Champion: {match.get("champion")}</div>
+                <div>Game Duration: {match.get("matchDetail").get("gameDuration")}</div>
             </div>
         );
     }

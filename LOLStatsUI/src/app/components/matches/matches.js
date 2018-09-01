@@ -8,19 +8,20 @@ export default class Matches extends Component {
         const { summoner, matches } = this.props;
 
         let jsxMatches = [];
-        const matchList = matches.get("matches");
-        if (matchList) {
-            matchList.map(match => {
+        if (matches) {
+            matches.map(match => {
                 jsxMatches.push(
                     <Match key={match.get("gameId")} match={match} />
                 );
             });
         }
 
+        let jsxSummoner = summoner ? `${summoner}'s last 5 games` : "";
+
         return (
             <div className="matches">
                 <div className="matches_summoner">
-                    {summoner}
+                    {jsxSummoner}
                 </div>
                 <div className="matches_list">
                     {jsxMatches}

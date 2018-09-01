@@ -16,7 +16,7 @@ export class Actions {
 
     search() {
         return (dispatch, getState) => {
-            return dispatch(this._search(getState().get("searchText")));
+            return dispatch(this._search(getState().get("mainState").get("searchText")));
         };
     }
 

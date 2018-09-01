@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import { connect } from "react-redux";
 import { Actions } from './actions/actions';
-import "./app.css";
+import "./App.css";
 import Title from "./components/title/title";
 import Search from "./components/search/search";
 import Matches from "./components/matches/matches";
