@@ -1,6 +1,7 @@
 "use strict";
 
 const env = require("../../.env").init();
+const inspect = require("util").inspect;
 const { MatchService } = require("../../services/matchService");
 const { RestService } = require("../../services/restService");
 const config = require("../../config");
@@ -8,6 +9,7 @@ const config = require("../../config");
 // const EXPECTED_REQUIRED_API_URL = "API URL is required";
 const VALID_SUMMONER = "BFY%20Meowington";
 const VALID_ACCOUNTID = 215942119;
+const VALID_MATCHID = 2853140570;
 
 
 describe("matchService", () => {
@@ -59,4 +61,28 @@ describe("matchService", () => {
             expect(matches.matches).toBeDefined();
         });
     });
+
+    describe("_findMatchDetails", () => {
+        const matchService = new MatchService(config.apiURL, config.apiKey, restService);
+
+        test("should return an error if the match is not found", async () => {
+            try {
+                const match = await matchService._findMatchDetails(1);
+                expect(match).toBeUndefined();
+            }
+            catch(e) {
+                expect(e).toBeDefined();
+                expect(e.status).toBeDefined();
+                expect(e.status.status_code).toBeDefined();
+                expect(e.status.status_code).toBe(404);
+            }
+        })
+
+        test("should return the match details for a valid matchID", async () => {
+            const match = await matchService._findMatchDetails(VALID_MATCHID);
+            expect(match).toBeDefined();
+            expect(match.gameId).toBeDefined();
+            expect(match.gameId).toBe(VALID_MATCHID);
+        });
+    })
 });
