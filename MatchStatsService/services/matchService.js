@@ -12,19 +12,25 @@ class MatchService {
         this._restService = restService
     }
 
-    async getMatchesForSummoner(summonerName)
+    async getMatchesForSummoner(summonerName, cb)
     {
         if (!summonerName || summonerName === "") throw new TypeError("Summoner name is required");
 
         try {
             const summoner = await this._findSummoner(summonerName);
             if (summoner && summoner.accountId) {
-                return await this._findMatchesByAccountID(summoner.accountId);
+                try {
+                    const matches = await this._findMatchesByAccountID(summoner.accountId);
+                    cb(null, matches);
+                }
+                catch(e) {
+                    cb(e);
+                }
             }
         }
         catch(e)
         {
-            throw e;
+            cb(e);
         }
     }
 

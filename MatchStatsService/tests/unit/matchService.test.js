@@ -89,15 +89,12 @@ describe("matchService", () => {
             expect(matchService.getMatchesForSummoner).toBeDefined();
         })
 
-        test("should fail with a missing summoner name", async () => {
-            try {
-                const x = await matchService.getMatchesForSummoner(null);
-                expect(x).toBeUndefined();
-            }
-            catch(e) {
-                expect(e).toBeDefined();
-                expect(e.message).toBe(EXPECTED_REQUIRED_SUMMONER_NAME);
-            }
+        test("should fail with a missing summoner name", () => {
+            matchService.getMatchesForSummoner(null, (err, matches) => {
+                expect(err).toBeDefined();
+                expect(err.message).toBe(EXPECTED_REQUIRED_SUMMONER_NAME);
+                    expect(matches).toBeUndefined();
+            });
         });
 
         test.skip("should return proper error message if summoner name is not found", () => {

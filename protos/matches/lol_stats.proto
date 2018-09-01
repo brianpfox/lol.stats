@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package lol_stats;
+
+// The greeting service definition.
+service Matches {
+    // Sends a greeting
+    rpc GetMatchesForSummoner (GetMatchesForSummonerRequest) returns (GetMatchesForSummonerReply) {}
+}
+
+// The request message containing the summoner's name.
+message GetMatchesForSummonerRequest {
+    string summonerName = 1;
+}
+
+// The response message containing the results
+message GetMatchesForSummonerReply {
+    string matches = 1;
+}
