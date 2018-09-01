@@ -1,7 +1,6 @@
 "use strict";
 
 const service = require("../services/matchesService");
-const inspect = require("util").inspect;
 
 class MatchesController {
     /*
