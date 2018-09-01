@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "./node_modules/.bin/eslint . && node index",
-    "test": "jest tests --config=test_config.json --watch"
+    "test": "jest tests/unit --config=test_config.json --watch",
+    "intregration_test": "jest tests/integration --config=test_config.json --watch"
   },
   "dependencies": {
     "@grpc/proto-loader": "^0.3.0",

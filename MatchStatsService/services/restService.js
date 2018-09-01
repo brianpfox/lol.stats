@@ -14,7 +14,7 @@ class RestService {
         };
         const response = await fetch(url, options);
         if (response.status >= 400)
-            throw new Error(await response.text());
+            throw await response.json();
         return await response.json();
     }
 }
