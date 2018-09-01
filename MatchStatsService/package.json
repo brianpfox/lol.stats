@@ -5,12 +5,13 @@
   "scripts": {
     "start": "./node_modules/.bin/eslint . && node index",
     "test": "jest tests/unit --config=test_config.json --watch",
-    "intregration_test": "jest tests/integration --config=test_config.json --watch"
+    "integration_test": "jest tests/integration --config=test_config.json --watch"
   },
   "dependencies": {
     "@grpc/proto-loader": "^0.3.0",
     "grpc": "^1.14.1",
     "isomorphic-fetch": "^2.2.1",
+    "lodash": "^4.17.10",
     "winston": "^3.0.0"
   },
   "devDependencies": {

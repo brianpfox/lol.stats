@@ -8,7 +8,8 @@ const RestService = jest.mock("../../services/restService");
 const EXPECTED_REQUIRED_API_URL = "API URL is required";
 const EXPECTED_REQUIRED_API_KEY = "API Key is required";
 const EXPECTED_REQUIRED_REST_SERVICE = "RestService is required";
-const EXPECTED_REQUIRED_SUMMONER_NAME = "Summoner name is required";
+const EXPECTED_REQUIRED_SUMMONER_NAME = "gRPC Request :: Summoner name is required";
+const EXPECTED_REQUIRED_SUMMONER_NAME_ASYNC = "Summoner name is required";
 
 describe("matchService", () => {
     // beforeEach(() => {
@@ -69,7 +70,7 @@ describe("matchService", () => {
             }
             catch(e) {
                 expect(e).toBeDefined();
-                expect(e.message).toBe(EXPECTED_REQUIRED_SUMMONER_NAME);
+                expect(e.message).toBe(EXPECTED_REQUIRED_SUMMONER_NAME_ASYNC);
             }
         });
 
@@ -92,8 +93,8 @@ describe("matchService", () => {
         test("should fail with a missing summoner name", () => {
             matchService.getMatchesForSummoner(null, (err, matches) => {
                 expect(err).toBeDefined();
-                expect(err.message).toBe(EXPECTED_REQUIRED_SUMMONER_NAME);
-                    expect(matches).toBeUndefined();
+                expect(err).toBe(EXPECTED_REQUIRED_SUMMONER_NAME);
+                expect(matches).toBeUndefined();
             });
         });
 
