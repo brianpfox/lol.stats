@@ -1,0 +1,20 @@
+{
+  "extends": ["eslint:recommended"],
+  "env": {
+    "node": true,
+    "jest": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module"
+  }
+  // "rules": {
+  //   "no-undef": 0,
+  //   "no-console": 0,
+  //   "semi": [1, "always"],
+  //   "no-multiple-empty-lines": [1, {"max": 1}],
+  //   "no-trailing-spaces": [1, {"skipBlankLines": false}],
+  //   "no-unused-vars": [1, {"vars": "all", "args": "after-used", "ignoreRestSiblings": true}]
+  // }
+}
+  
