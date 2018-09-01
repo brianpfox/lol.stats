@@ -8,12 +8,12 @@
 }
 @media only screen and (min-width: 601px) {
   .appWrap {
-    grid-template-areas: "title title subtitle subtitle" "main main main main" "main main main main" "main main main main" "main main main main" "footer footer footer footer";
+    grid-template-areas: "title title title title" "subtitle subtitle subtitle subtitle" "subtitle subtitle subtitle subtitle" "main main main main" "main main main main" "footer footer footer footer";
   }
 }
 @media only screen and (min-width: 1008px) {
   .appWrap {
-    grid-template-areas: "title title subtitle subtitle" "title title subtitle subtitle" "main main main main" "main main main main" "footer footer footer footer" "footer footer footer footer";
+    grid-template-areas: "title title title title" "subtitle subtitle subtitle subtitle" "subtitle subtitle subtitle subtitle" "main main main main" "footer footer footer footer" "footer footer footer footer";
   }
 }
 .appWrap .titleWrap {
