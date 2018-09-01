@@ -1,5 +1,7 @@
 "use strict";
 
+const inspect = require("util").inspect;
+
 class MatchService {
     constructor(apiURL, apiKey, restService) {
         // Fail fast without required parameters
@@ -12,25 +14,38 @@ class MatchService {
         this._restService = restService
     }
 
-    async getMatchesForSummoner(summonerName, cb)
+    getMatchesForSummoner(call, cb)
+    {
+        if (!call || !call.request.summonerName || call.request.summonerName === "") throw new TypeError("gRPC Request :: Summoner name is required");
+        this.getMatchesForSummoner_async(call.request.summonerName)
+        .then(matches => {
+            cb(null, {matches: JSON.stringify(matches)});
+        })
+        .catch(err => {
+            console.warn(`MatchService :: getMatchesForSummoner :: error :: ${inspect(err)}`);
+            cb(err);
+        });
+    }
+
+    async getMatchesForSummoner_async(summonerName)
     {
         if (!summonerName || summonerName === "") throw new TypeError("Summoner name is required");
-
+        console.log(`MatchService :: getMatchesForSummoner :: ${summonerName}`);
         try {
             const summoner = await this._findSummoner(summonerName);
+            console.log(`MatchService :: getMatchesForSummoner :: found summoner ${summoner}`);
             if (summoner && summoner.accountId) {
                 try {
-                    const matches = await this._findMatchesByAccountID(summoner.accountId);
-                    cb(null, matches);
+                    return await this._findMatchesByAccountID(summoner.accountId);
                 }
                 catch(e) {
-                    cb(e);
+                    throw(e);
                 }
             }
         }
         catch(e)
         {
-            cb(e);
+            throw(e);
         }
     }
 

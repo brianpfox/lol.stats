@@ -1,0 +1,23 @@
+{
+  "name": "serverapi",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "./node_modules/.bin/eslint . && node index",
+    "test": "jest tests --config=test_config.json --watch"
+  },
+  "dependencies": {
+    "@grpc/proto-loader": "^0.3.0",
+    "cookie-parser": "~1.4.3",
+    "debug": "^2.6.9",
+    "express": "~4.16.0",
+    "grpc": "^1.14.1",
+    "helmet": "^3.13.0",
+    "morgan": "~1.9.0",
+    "winston": "^3.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.4.0",
+    "jest": "^23.5.0"
+  }
+}

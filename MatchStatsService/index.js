@@ -26,7 +26,7 @@ class Application {
         this._matches_proto = grpc.loadPackageDefinition(this._packageDefinition).lol_stats;
         this._matchService = new MatchService(config.apiURL, config.apiKey, new RestService());
         this._server.addService(this._matches_proto.Matches.service, {
-            GetMatchesForSummoner: this._matchService.getMatchesForSummoner
+            GetMatchesForSummoner: this._matchService.getMatchesForSummoner.bind(this._matchService)
         });
     }
 
