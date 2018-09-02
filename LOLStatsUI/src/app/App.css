@@ -1,6 +1,6 @@
 .appWrap {
   display: grid;
-  grid-template-columns: 100px 1fr 1fr 100px;
+  grid-template-columns: 10px 1fr 1fr 10px;
   grid-template-rows: 50px 25px 25px 1fr 25px 25px;
   grid-template-areas: "title title title title" "subtitle subtitle subtitle subtitle" "subtitle subtitle subtitle subtitle" "main main main main" "main main main main" "footer footer footer footer";
   border: 1px solid #333;
@@ -8,12 +8,12 @@
 }
 @media only screen and (min-width: 601px) {
   .appWrap {
-    grid-template-areas: "title title title title" "subtitle subtitle subtitle subtitle" "subtitle subtitle subtitle subtitle" "main main main main" "main main main main" "footer footer footer footer";
+    grid-template-areas: ". title subtitle ." "main main main main" "main main main main" "main main main main" "main main main main" "footer footer footer footer";
   }
 }
 @media only screen and (min-width: 1008px) {
   .appWrap {
-    grid-template-areas: "title title title title" "subtitle subtitle subtitle subtitle" "subtitle subtitle subtitle subtitle" "main main main main" "footer footer footer footer" "footer footer footer footer";
+    grid-template-areas: ". title subtitle ." ". title subtitle ." "main main main main" "main main main main" "footer footer footer footer" "footer footer footer footer";
   }
 }
 .appWrap .titleWrap {
