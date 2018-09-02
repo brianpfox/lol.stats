@@ -6,7 +6,7 @@ import moment from 'moment';
 export default class Match extends Component {
     constructor(props) {
         super(props);
-        moment.locale('en', {
+        moment.updateLocale('en', {
             calendar : {
                 lastDay : '[Yesterday at] LT',
                 sameDay : '[Today at] LT',

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import "./search.css";
+import 'font-awesome/css/font-awesome.min.css';
 
 export default class Search extends Component {
     onSearchTextChange(evt) {
@@ -11,9 +12,8 @@ export default class Search extends Component {
     render() {
         const {isFetching, searchText, onSearch} = this.props;
 
-        let jsxFetching = isFetching ? (
-            <span>spin</span>
-        ) : "";
+        const buttonCls = `search_searchControls_button fa ${isFetching ? "fa-refresh fa-spin" : "fa-search"}`;
+
         return (
             <div className="search">
                 <div className="search_searchControls">
@@ -23,8 +23,7 @@ export default class Search extends Component {
                         placeholder="Search for Summoner"
                         onChange={this.onSearchTextChange.bind(this)}
                     />
-                    <button className="search_searchControls_button" onClick={onSearch}>Go</button>
-                    {jsxFetching}
+                    <button className={buttonCls} onClick={onSearch}></button>
                 </div>
             </div>
         );

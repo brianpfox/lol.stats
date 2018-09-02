@@ -13,9 +13,12 @@
   font-weight: 400;
   text-align: center;
 }
-.matches .matches_list {
+.matches .matches_scroll .matches_scroll_list {
   padding: 10px 10px 10px 10px;
 }
-.matches .matches_list .matches_list_match {
-  padding: 10px 0 10px 0;
+.matches .matches_scroll .matches_scroll_list .matches_list_match {
+  margin: 10px 0 10px 0;
+  padding: 10px 5px 10px 5px;
+  border: 1px solid #eee;
+  border-radius: 10px;
 }

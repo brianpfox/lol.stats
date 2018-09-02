@@ -28,8 +28,10 @@ export default class Matches extends Component {
                         {jsxSummoner}
                     </div>
                 </div>
-                <div className="matches_list">
-                    {jsxMatches}
+                <div className="matches_scroll">
+                    <div className="matches_scroll_list">
+                        {jsxMatches}
+                    </div>
                 </div>
             </div>
         );
