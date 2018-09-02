@@ -4,8 +4,9 @@ import { actions } from "../actions/actions";
 
 const initialState = Immutable.Map({
     isFetching: false,
-    searchText: "BFY%20Meowington",
+    searchText: "",
     summoner: "",
+    error: "",
     matches: Immutable.Map(),
 });
 
@@ -16,12 +17,20 @@ function mainState(state = initialState, action) {
 
         case actions.SEARCH_REQUEST:
             state = state.set("isFetching", true);
+            state = state.set("error", "");
             return state;
 
         case actions.SEARCH_RECEIVED:
             state = state.set("isFetching", false);
-            state = state.set("summoner", state.get("searchText"))
-            return state.set("matches", action.matches);
+            state = state.set("summoner", state.get("searchText"));
+            if (action.error) {
+                state = state.set("error", action.error);
+                return state.set("matches", Immutable.Map());
+            }
+            else {
+                state = state.set("error", "");
+                return state.set("matches", action.matches);
+            }
 
         default:
             return state;

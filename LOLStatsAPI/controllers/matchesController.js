@@ -16,7 +16,9 @@ class MatchesController {
             res.send(result);
         }
         catch(err) {
-            res.send(`Service is down: ${err}`);
+            res.send({
+                error: err
+            });
         }
     }
 }

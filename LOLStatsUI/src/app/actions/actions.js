@@ -34,9 +34,10 @@ export class Actions {
         };
      }
      
-     _searchReceived(matches) {
+     _searchReceived(error, matches) {
         return {
            type: actions.SEARCH_RECEIVED,
+           error: error,
            matches: matches
         };
      }
@@ -48,7 +49,10 @@ export class Actions {
             fetch(`/api/matches?summonerName=${searchText}`)
             .then(response => response.json())
             .then(json => {
-                return dispatch(this._searchReceived(Immutable.fromJS(json)));
+                if (json.error)
+                    return dispatch(this._searchReceived(json.error));
+                else 
+                    return dispatch(this._searchReceived(null, Immutable.fromJS(json)));
             });
         };
     }

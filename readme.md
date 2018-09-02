@@ -59,4 +59,4 @@ Run
 
 to run the applications in Docker containers.  By default, the application can be accessed at:
 
-```http://localhost:3000/```
+```http://localhost:3001/```

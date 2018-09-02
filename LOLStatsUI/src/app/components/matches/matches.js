@@ -6,12 +6,22 @@ import "./matches.css";
 
 export default class Matches extends Component {
     render() {
-        const { summoner, matches } = this.props;
+        const { summoner, matches, error } = this.props;
 
-        let jsxMatches = [];
+        if (error && error !== "") {
+            return (
+                <div className="matches">
+                    <div className="matches_error">
+                        {error}
+                    </div>
+                </div>
+            );
+        }
+
+        let jsxMatchesList = [];
         if (matches) {
             matches.map(match => {
-                return jsxMatches.push(
+                return jsxMatchesList.push(
                     <Match key={match.get("gameId")} match={match} />
                 );
             });
@@ -19,9 +29,9 @@ export default class Matches extends Component {
 
         const gameCount = matches ? matches.size : 0;
 
-        let jsxSummoner = summoner ? `${summoner}'s last ${gameCount} game${gameCount > 1 ? "s" : ""}` : "";
+        const jsxSummoner = summoner ? `${summoner}'s last ${gameCount} game${gameCount > 1 ? "s" : ""}` : "";
 
-        return (
+        const jsxMatches = (
             <div className="matches">
                 <div className="matches_summonerWrap">
                     <div className="matches_summonerWrap_summoner">
@@ -29,15 +39,18 @@ export default class Matches extends Component {
                     </div>
                 </div>
                 <div className="matches_list">
-                    {jsxMatches}
+                    {jsxMatchesList}
                 </div>
             </div>
         );
+
+        return jsxMatches;
     }
 }
 
 Matches.propTypes = {
     summoner: PropTypes.string,
     matches: PropTypes.objectOf(Immutable.Map).isRequired,
+    error: PropTypes.string.isRequired,
 }
 

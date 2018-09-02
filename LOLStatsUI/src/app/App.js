@@ -25,7 +25,7 @@ class App extends Component {
     }
 
     render() {
-        const {isFetching, searchText, summoner, matches} = this.props;
+        const {isFetching, searchText, error, summoner, matches} = this.props;
         return (
             <div className="appWrap">
                 <div className="titleWrap">
@@ -43,6 +43,7 @@ class App extends Component {
                     <Matches
                         summoner={summoner}
                         matches={matches}
+                        error={error}
                     />
                 </div>
                 <div className="footerWrap">
@@ -58,6 +59,7 @@ function mapStateToProps(state) {
     return {
         isFetching: sp.get("isFetching"),
         searchText: sp.get("searchText"),
+        error: sp.get("error"),
         summoner: sp.get("summoner"),
         matches: sp.get("matches")
     };
@@ -69,6 +71,7 @@ App.propTypes = {
     dispatch: PropTypes.func.isRequired,
     isFetching: PropTypes.bool.isRequired,
     searchText: PropTypes.string.isRequired,
+    error: PropTypes.string.isRequired,
     summoner: PropTypes.string.isRequired,
     matches: PropTypes.objectOf(Immutable.Map).isRequired,
 }

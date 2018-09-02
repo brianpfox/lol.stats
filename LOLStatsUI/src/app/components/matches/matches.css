@@ -4,6 +4,11 @@
   padding-top: 15px;
   border-top: 1px solid #ccc;
 }
+.matches .matches_error {
+  font-weight: 400;
+  text-align: center;
+  color: #900;
+}
 .matches .matches_summonerWrap {
   position: relative;
   height: 50px;

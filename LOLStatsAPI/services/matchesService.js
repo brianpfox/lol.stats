@@ -25,9 +25,13 @@ class MatchesService {
 
     getMatches(summonerName) {
         return new Promise((resolve, reject) => {
+            if (!summonerName || summonerName === "") reject("Summoner name is required");
             this._matchStatsClient.getMatchesForSummoner({summonerName: summonerName}, (err, response) => {
-                if (err) return reject(err);
-                if (!response) return reject("Service unreachable");
+                if (err) {
+                    console.warn(`MatchesController :: get :: error calling service :: ${err}`);
+                    return reject("Service is unavailable");
+                }
+                if (!response) return reject("Service is unavailable");
                 return resolve(response.matches);
             });
         });
