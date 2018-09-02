@@ -2,3 +2,4 @@
 */.env.js
 
 MatchStatsService/protos/*.proto
+LOLStatsAPI/protos/*.proto

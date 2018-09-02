@@ -9,6 +9,8 @@ RUN npm install
 
 # Copy the current directory contents into the container at /app
 COPY config config
+COPY controllers controllers
+COPY routes routes
 COPY services services
 COPY index.js index.js
 COPY protos protos
@@ -24,13 +26,12 @@ COPY protos protos
 
 # Set initial environment variables
 ENV NODE_ENV="development"
-ENV PORT="3010"
+ENV PORT="3001"
 ENV LOG_LEVEL="silly"
-ENV RIOT_API_URL="https://na1.api.riotgames.com"
-ENV PROTO_PATH="/protos"
-# Required to be set at runtime
-ENV RIOT_API_KEY=""
+ENV SAMPLE_SERVICE_URL="localhost"
+ENV SAMPLE_SERVICE_PORT="3010"
+ENV PROTO_PATH="/../protos"
 
-EXPOSE 3010
+EXPOSE 3001
 
 CMD node index
