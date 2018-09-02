@@ -1,0 +1,1 @@
+cd LOLStatsAPI && docker-compose up --force-recreate
