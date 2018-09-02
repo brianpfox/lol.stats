@@ -22,9 +22,9 @@ export default class Search extends Component {
                 />
                 <button onClick={onSearch}>Search</button>
                 {jsxFetching}
-                BFY%20Meowington
             </div>
         );
+        // BFY%20Meowington
     }
 }
 
