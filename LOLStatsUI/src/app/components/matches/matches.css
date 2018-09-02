@@ -1,5 +1,8 @@
 .matches {
   height: 100%;
+  margin-top: 10px;
+  padding-top: 15px;
+  border-top: 1px solid #ccc;
 }
 .matches .matches_summonerWrap {
   position: relative;
@@ -13,10 +16,23 @@
   font-weight: 400;
   text-align: center;
 }
-.matches .matches_scroll .matches_scroll_list {
+.matches .matches_list {
   padding: 10px 10px 10px 10px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
 }
-.matches .matches_scroll .matches_scroll_list .matches_list_match {
+.matches .matches_list .matches_list_matchWrap {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+.matches .matches_list .matches_list_matchWrap .matches_list_matchWrap_match {
+  width: 100%;
+  max-width: 1008px;
   margin: 10px 0 10px 0;
   padding: 10px 5px 10px 5px;
   border: 1px solid #eee;

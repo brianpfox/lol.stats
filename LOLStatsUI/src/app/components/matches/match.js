@@ -30,10 +30,12 @@ export default class Match extends Component {
         const { match } = this.props;
         // console.log(match.toJS());
         return (
-            <div className="matches_list_match">
-                <div>Timestamp: {this._formatDate(match.get("timestamp"))}</div>
-                <div>Champion: {match.get("champion")}</div>
-                <div>Game Duration: {this._formatDuration( match.get("matchDetail").get("gameDuration"))} minutes</div>
+            <div className="matches_list_matchWrap">
+                <div className="matches_list_matchWrap_match">
+                    <div>Timestamp: {this._formatDate(match.get("timestamp"))}</div>
+                    <div>Champion: {match.get("champion")}</div>
+                    <div>Game Duration: {this._formatDuration( match.get("matchDetail").get("gameDuration"))} minutes</div>
+                </div>
             </div>
         );
     }
