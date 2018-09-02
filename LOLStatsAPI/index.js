@@ -3,6 +3,7 @@
 const express = require("express");
 const router = express.Router();
 const http = require("http");
+const path = require("path");
 const helmet = require("helmet");
 const logger = require("morgan");
 const { createLogger, format, transports } = require('winston');
@@ -18,6 +19,7 @@ class Application {
 
         this._app = express();
         this._registerMiddlewares(this._app);
+        this._registerStatic(this._app);
         this._registerRoutes(this._app, router, matchesController);
         this._server = http.createServer(this._app);
     }
@@ -44,6 +46,16 @@ class Application {
         app.use(logger("dev"));
         app.use(express.json());
         app.use(express.urlencoded({ extended: false }));
+    }
+
+    _registerStatic(app) {
+        app.use("/static", express.static(path.join(__dirname, config.uiStaticPath)));
+        app.use("/*", (req, res, next) => {
+            if (req.originalUrl.startsWith(config.apiPrefix)) {
+                return next();
+            }
+            res.sendFile(path.join(__dirname, config.uiIndexPath));
+        });
     }
 
     _registerRoutes(app, router, controller) {

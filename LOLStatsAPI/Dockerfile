@@ -31,6 +31,8 @@ ENV LOG_LEVEL="silly"
 ENV SAMPLE_SERVICE_URL="localhost"
 ENV SAMPLE_SERVICE_PORT="3010"
 ENV PROTO_PATH="/../protos"
+ENV UI_INDEX_PATH="static/index.html"
+ENV UI_STATIC_PATH="static"
 
 EXPOSE 3001
 

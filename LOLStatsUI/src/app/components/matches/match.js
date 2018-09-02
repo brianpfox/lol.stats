@@ -5,7 +5,7 @@ import Immutable from "immutable";
 export default class Match extends Component {
     render() {
         const { match } = this.props;
-        console.log(match.toJS());
+        // console.log(match.toJS());
         return (
             <div>
                 <div>Timestamp: {match.get("timestamp")}</div>
