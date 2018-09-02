@@ -10,5 +10,6 @@ module.exports =  {
     port: getEnvVar("PORT", 3010),
     logLevel: getEnvVar("LOG_LEVEL", "silly"),
     apiURL: getEnvVar("RIOT_API_URL", "https://na1.api.riotgames.com"),
-    apiKey: getEnvVar("RIOT_API_KEY", "xxx")
+    apiKey: getEnvVar("RIOT_API_KEY", "xxx"),
+    protoPath: getEnvVar("PROTO_PATH", "/../protos/matches")
 };

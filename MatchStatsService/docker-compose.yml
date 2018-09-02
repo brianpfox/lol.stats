@@ -1,0 +1,14 @@
+version: "3"
+services:
+  match_stats_service:
+    image: bfox/match_stats_service
+    restart: always
+    ports:
+      - "3010:3010"
+    environment:
+      NODE_ENV: "production"
+      RIOT_API_KEY: ${RIOT_API_KEY}
+    networks:
+      - webnet
+networks:
+  webnet:
