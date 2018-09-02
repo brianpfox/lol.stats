@@ -1,6 +1,6 @@
 {
-  "name": "react-template",
-  "version": "0.1.0",
+  "name": "lol_stats_ui",
+  "version": "0.0.1",
   "private": true,
   "devDependencies": {
     "npm-run-all": "^4.1.3",
