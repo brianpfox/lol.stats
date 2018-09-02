@@ -5,10 +5,10 @@ const service = require("../services/matchesService");
 class MatchesController {
     /*
      *  /api/matches
-     *  @summonerName = Name of summoner to look up 
+     *  @summonerName = Name of summoner to look up
      */
     async get(req, res) {
-        const summonerName = req.param("summonerName") ? req.param("summonerName") : null;
+        const summonerName = req.query.summonerName ? req.query.summonerName : null;
         console.log(`MatchesController :: get :: summonerName = ${summonerName}`);
 
         try {

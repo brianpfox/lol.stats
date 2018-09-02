@@ -1,0 +1,27 @@
+version: "3"
+services:
+  lol_stats_api:
+    image: bfox/lol_stats_api
+    restart: always
+    depends_on:
+      - match_stats_service
+    ports:
+      - "3001:3001"
+    environment:
+      NODE_ENV: "production"
+      SAMPLE_SERVICE_URL: "match_stats_service"
+      SAMPLE_SERVICE_PORT: "3010"
+    networks:
+      - webnet
+  match_stats_service:
+    image: bfox/match_stats_service
+    restart: always
+    ports:
+      - "3010:3010"
+    environment:
+      NODE_ENV: "production"
+      RIOT_API_KEY: ${RIOT_API_KEY}
+    networks:
+      - webnet
+networks:
+  webnet:

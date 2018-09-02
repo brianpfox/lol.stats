@@ -12,5 +12,6 @@ module.exports =  {
     port: getEnvVar("PORT", 3001),
     logLevel: getEnvVar("LOG_LEVEL", "silly"),
     matchStatsServiceURL: getEnvVar("SAMPLE_SERVICE_URL", "localhost"),
-    matchStatsServicePort: getEnvVar("SAMPLE_SERVICE_PORT", 3010)
+    matchStatsServicePort: getEnvVar("SAMPLE_SERVICE_PORT", 3010),
+    protoPath: getEnvVar("PROTO_PATH", "/../../protos/matches")
 };

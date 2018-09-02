@@ -38,7 +38,7 @@ class Application {
 
         return logger;
     }
-    
+
     _registerMiddlewares(app) {
         app.use(helmet());
         app.use(logger("dev"));

@@ -1,7 +1,5 @@
 "use strict";
 
-const PROTO_PATH = __dirname + "/../../protos/matches/lol_stats.proto";
-
 const grpc = require("grpc");
 const protoLoader = require("@grpc/proto-loader");
 
@@ -9,8 +7,9 @@ const config = require("../config");
 
 class MatchesService {
     constructor() {
+        this._protoPath = `${__dirname + config.protoPath}/lol_stats.proto`;
         this._packageDefinition = protoLoader.loadSync(
-            PROTO_PATH,
+            this._protoPath,
             {keepCase: true,
                 longs: String,
                 enums: String,
