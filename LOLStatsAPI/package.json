@@ -1,6 +1,6 @@
 {
-  "name": "serverapi",
-  "version": "0.0.0",
+  "name": "lol_stats_api",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "./node_modules/.bin/eslint config controllers routes services index.js && node index",
