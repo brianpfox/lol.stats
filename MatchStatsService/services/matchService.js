@@ -13,12 +13,12 @@ class MatchService {
 
         this._apiURL = apiURL;
         this._apiKey = apiKey;
-        this._restService = restService
+        this._restService = restService;
     }
 
     getMatchesForSummoner(call, cb)
     {
-        if (!call || !call.request.summonerName || call.request.summonerName === "") 
+        if (!call || !call.request.summonerName || call.request.summonerName === "")
             return cb("gRPC Request :: Summoner name is required");
         this.getMatchesForSummoner_async(call.request.summonerName)
         .then(matches => {
@@ -51,9 +51,9 @@ class MatchService {
                     const matchDetails = await this._findMatchDetailsForAll(matchIDs);
 
                     const allInfo = _.map(matchesToSearch, (match) => {
-                        match.matchDetail = matchDetails[match.gameId]; 
+                        match.matchDetail = matchDetails[match.gameId];
                         return match;
-                    })
+                    });
                     return allInfo;
                 }
                 catch(e) {
@@ -128,8 +128,8 @@ class MatchService {
                 }
                 resolve(matches);
             });
-        })
-        
+        });
+
         await p;
 
         return matches;

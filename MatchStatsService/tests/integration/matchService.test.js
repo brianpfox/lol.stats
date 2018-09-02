@@ -1,7 +1,6 @@
 "use strict";
 
-const env = require("../../.env").init();
-const inspect = require("util").inspect;
+const env = require("../../.env").init(); // eslint-disable-line no-unused-vars
 const { MatchService } = require("../../services/matchService");
 const { RestService } = require("../../services/restService");
 const config = require("../../config");
@@ -10,7 +9,6 @@ const config = require("../../config");
 const VALID_SUMMONER = "BFY%20Meowington";
 const VALID_ACCOUNTID = 215942119;
 const VALID_MATCHID = 2853140570;
-
 
 describe("matchService", () => {
     const restService = new RestService();
@@ -76,7 +74,7 @@ describe("matchService", () => {
                 expect(e.status.status_code).toBeDefined();
                 expect(e.status.status_code).toBe(404);
             }
-        })
+        });
 
         test("should return the match details for a valid matchID", async () => {
             const match = await matchService._findMatchDetails(VALID_MATCHID);
@@ -84,5 +82,5 @@ describe("matchService", () => {
             expect(match.gameId).toBeDefined();
             expect(match.gameId).toBe(VALID_MATCHID);
         });
-    })
+    });
 });
