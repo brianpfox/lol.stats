@@ -30,7 +30,7 @@ describe("matchService", () => {
                 expect(e.message).toBe(EXPECTED_REQUIRED_API_URL);
             }
         });
-    
+
         test("should fail with missing API Key", () => {
             try {
                 new MatchService("URL", null, RestService);
@@ -62,7 +62,7 @@ describe("matchService", () => {
 
         test("should exist", () => {
             expect(matchService._findSummoner).toBeDefined();
-        })
+        });
 
         test("should fail with a missing summoner name", async () => {
             try {
@@ -88,7 +88,7 @@ describe("matchService", () => {
 
         test("should exist", () => {
             expect(matchService.getMatchesForSummoner).toBeDefined();
-        })
+        });
 
         test("should fail with a missing summoner name", () => {
             matchService.getMatchesForSummoner(null, (err, matches) => {
@@ -99,15 +99,15 @@ describe("matchService", () => {
         });
 
         test.skip("should return proper error message if summoner name is not found", () => {
-            
+
         });
 
         test.skip("should return empty set if no matched are found for a summoner", () => {
-            
+
         });
 
         test.skip("should return a list of matches for a found summoner", () => {
-            
+
         });
     });
 });

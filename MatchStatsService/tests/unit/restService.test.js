@@ -6,10 +6,9 @@ const EXPECTED_REQUIRED_URL = "URL is required";
 const EXPECTED_BAD_METHOD = "Method is not valid";
 const TEST_URL = "https://jsonplaceholder.typicode.com/todos/1";
 
-
 describe("restService", () => {
     const restService = new RestService();
-    
+
     test("should exist", () => {
         expect(restService).toBeDefined();
     });
@@ -61,6 +60,6 @@ describe("restService", () => {
             }
         });
 
-        test.skip("should successfully pass headers if specified", () => {})
+        test.skip("should successfully pass headers if specified", () => {});
     });
 });
