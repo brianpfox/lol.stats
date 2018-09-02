@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
+import "./search.css";
 
 export default class Search extends Component {
     onSearchTextChange(evt) {
@@ -11,20 +12,22 @@ export default class Search extends Component {
         const {isFetching, searchText, onSearch} = this.props;
 
         let jsxFetching = isFetching ? (
-            <div>FETCHING</div>
+            <span>spin</span>
         ) : "";
         return (
             <div className="search">
-                <input type="text" 
-                    text={searchText} 
-                    placeholder="Search for Summoner"
-                    onChange={this.onSearchTextChange.bind(this)}
-                />
-                <button onClick={onSearch}>Search</button>
-                {jsxFetching}
+                <div className="search_searchControls">
+                    <input className="search_searchControls_input" type="text" 
+                        autoFocus
+                        text={searchText} 
+                        placeholder="Search for Summoner"
+                        onChange={this.onSearchTextChange.bind(this)}
+                    />
+                    <button className="search_searchControls_button" onClick={onSearch}>Go</button>
+                    {jsxFetching}
+                </div>
             </div>
         );
-        // BFY%20Meowington
     }
 }
 

@@ -1,0 +1,16 @@
+.search {
+  position: relative;
+  height: 100%;
+}
+.search .search_searchControls {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.search .search_searchControls .search_searchControls_input {
+  width: 200px;
+}
+.search .search_searchControls .search_searchControls_button {
+  margin-left: 5px;
+}
