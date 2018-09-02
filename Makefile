@@ -1,5 +1,5 @@
 .PHONY: all
-all: matchStats lolStatsAPI
+all: matchStats lolStatsUI lolStatsAPI
 
 .PHONY: matchStats 
 matchStats:
@@ -7,6 +7,11 @@ matchStats:
 	cp ./protos/matches/lol_stats.proto ./MatchStatsService/protos/
 	docker build -f MatchStatsService/Dockerfile -t bfox/match_stats_service ./MatchStatsService
 	
+.PHONY: lolStatsUI
+lolStatsUI:
+	@echo Building LOL Stats UI
+	cd ./LOLStatsUI && npm install && npm run build
+	cp -R ./LOLStatsUI/build/ ./LOLStatsAPI/static/
 
 .PHONY: lolStatsAPI 
 lolStatsAPI:

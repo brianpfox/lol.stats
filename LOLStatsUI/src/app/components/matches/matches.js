@@ -10,7 +10,7 @@ export default class Matches extends Component {
         let jsxMatches = [];
         if (matches) {
             matches.map(match => {
-                jsxMatches.push(
+                return jsxMatches.push(
                     <Match key={match.get("gameId")} match={match} />
                 );
             });
