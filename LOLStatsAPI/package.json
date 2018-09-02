@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "./node_modules/.bin/eslint . && node index",
+    "start": "./node_modules/.bin/eslint config controllers routes services index.js && node index",
     "test": "jest tests --config=test_config.json --watch"
   },
   "dependencies": {

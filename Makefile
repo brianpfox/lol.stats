@@ -11,7 +11,7 @@ matchStats:
 lolStatsUI:
 	@echo Building LOL Stats UI
 	cd ./LOLStatsUI && npm install && npm run build
-	cp -R ./LOLStatsUI/build/ ./LOLStatsAPI/static/
+	cp -R ./LOLStatsUI/build/ ./LOLStatsAPI/ui/
 
 .PHONY: lolStatsAPI 
 lolStatsAPI:
