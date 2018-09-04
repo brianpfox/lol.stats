@@ -3,3 +3,9 @@
 
 MatchStatsService/protos/*.proto
 LOLStatsAPI/protos/*.proto
+
+deploy/infrastructure/apply.sh
+deploy/infrastructure/destroy.sh
+
+.terraform
+*.tfstate*
