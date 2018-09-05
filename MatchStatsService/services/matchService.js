@@ -3,17 +3,18 @@
 const inspect = require("util").inspect;
 const _ = require("lodash");
 const async = require("async");
+const { RestService } = require("./restService");
 
-class MatchService {
-    constructor(apiURL, apiKey, restService) {
+class MatchService extends RestService {
+    constructor(apiURL, apiKey) {
+        super();
+
         // Fail fast without required parameters
         if (!apiURL || apiURL === "") throw new TypeError("API URL is required");
         if (!apiKey || apiKey === "") throw new TypeError("API Key is required");
-        if (!restService || restService === "") throw new TypeError("RestService is required");
 
         this._apiURL = apiURL;
         this._apiKey = apiKey;
-        this._restService = restService;
     }
 
     getMatchesForSummoner(call, cb)
@@ -85,7 +86,7 @@ class MatchService {
 
         // TODO: IMPLEMENT CACHEING
         // TODO: HANDLE RATE LIMITING
-        return await this._restService.get(`${this._apiURL}/lol/summoner/v3/summoners/by-name/${summonerName}`, "GET", {
+        return await this.get(`${this._apiURL}/lol/summoner/v3/summoners/by-name/${summonerName}`, "GET", {
             "X-Riot-Token": this._apiKey
         });
     }
@@ -95,7 +96,7 @@ class MatchService {
 
         // TODO: IMPLEMENT CACHEING
         // TODO: HANDLE RATE LIMITING
-        return await this._restService.get(`${this._apiURL}/lol/match/v3/matchlists/by-account/${accountID}`, "GET", {
+        return await this.get(`${this._apiURL}/lol/match/v3/matchlists/by-account/${accountID}`, "GET", {
             "X-Riot-Token": this._apiKey
         });
     }
@@ -105,7 +106,7 @@ class MatchService {
 
         // TODO: IMPLEMENT CACHEING
         // TODO: HANDLE RATE LIMITING
-        return await this._restService.get(`${this._apiURL}/lol/match/v3/matches/${matchID}`, "GET", {
+        return await this.get(`${this._apiURL}/lol/match/v3/matches/${matchID}`, "GET", {
             "X-Riot-Token": this._apiKey
         });
     }
@@ -136,4 +137,4 @@ class MatchService {
     }
 }
 
-module.exports.MatchService = MatchService;
+module.exports = MatchService;

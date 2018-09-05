@@ -1,9 +1,7 @@
 "use strict";
 
-//TODO - Mock RestService correctly
-
-const { MatchService } = require("../../services/matchService");
-const RestService = jest.mock("../../services/restService");
+const MatchService = require("../../services/matchService");
+// jest.mock("../../services/matchService");
 
 const EXPECTED_REQUIRED_API_URL = "API URL is required";
 const EXPECTED_REQUIRED_API_KEY = "API Key is required";
@@ -12,10 +10,6 @@ const EXPECTED_REQUIRED_SUMMONER_NAME = "gRPC Request :: Summoner name is requir
 const EXPECTED_REQUIRED_SUMMONER_NAME_ASYNC = "Summoner name is required";
 
 describe("matchService", () => {
-    // beforeEach(() => {
-    //     RestService.mockClear();
-    // });
-
     test("should exist", () => {
         expect(MatchService).toBeDefined();
     });
@@ -23,7 +17,7 @@ describe("matchService", () => {
     describe("constructor", () => {
         test("should fail with missing API URL", () => {
             try {
-                new MatchService(null, "key", RestService);
+                new MatchService(null, "key");
             }
             catch(e) {
                 expect(e).toBeDefined();
@@ -33,7 +27,7 @@ describe("matchService", () => {
 
         test("should fail with missing API Key", () => {
             try {
-                new MatchService("URL", null, RestService);
+                new MatchService("URL", null);
             }
             catch(e) {
                 expect(e).toBeDefined();
@@ -52,13 +46,14 @@ describe("matchService", () => {
         });
 
         test("should succeed with required args", () => {
-            const matchService = new MatchService("URL", "KEY", RestService);
+            const matchService = new MatchService("URL", "KEY");
             expect(matchService).toBeDefined();
         });
     });
 
     describe("_findSummoner", () => {
-        const matchService = new MatchService("URL", "KEY", RestService);
+        const matchService = new MatchService("URL", "KEY");
+        matchService.get = jest.fn();
 
         test("should exist", () => {
             expect(matchService._findSummoner).toBeDefined();
@@ -75,16 +70,16 @@ describe("matchService", () => {
         });
 
         test("should call RestService if summoner name is present", () => {
-            // console.log(`get called: ${RestService.get.mock.calls.length}`);
+            expect(matchService.get).not.toHaveBeenCalled();
             matchService._findSummoner("name");
-            // console.log(`get called after: ${RestService.get.mock.calls.length}`);
-            // expect(RestService.get).toHaveBeenCalled();
-            // expect(true).toBeFalsy();
+            console.log(`get called: ${matchService.get.mock.calls.length}`);
+            expect(matchService.get).toHaveBeenCalled();
         });
     });
 
     describe("getMatchesForSummoner", () => {
-        const matchService = new MatchService("URL", "KEY", RestService);
+        const matchService = new MatchService("URL", "KEY");
+        matchService.get = jest.fn();
 
         test("should exist", () => {
             expect(matchService.getMatchesForSummoner).toBeDefined();
